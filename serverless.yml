@@ -1,0 +1,32 @@
+service: serverles-mongo-crud
+frameworkVersion: '3'
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-offline
+
+resources:
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+
+functions:
+  createUser:
+    handler: src/handlers/createUser.handler
+    events:
+      - httpApi:
+          path: /users
+          method: POST
+  getAllUsers:
+    handler: src/handlers/getAllUsers.handler
+    events:
+      - httpApi:
+          path: /getallusers
+          method: GET
+  getUsers:
+    handler: src/handlers/getuser.handler
+    events:
+      - httpApi:
+          path: /users/{email}
+          method: GET
